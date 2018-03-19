@@ -23,22 +23,6 @@ RUN /bin/bash -l -c "rvm requirements"
 RUN /bin/bash -l -c "rvm install 2.1"
 RUN /bin/bash -l -c "gem install bundler --no-ri --no-rdoc"
 
-
-# ARG FIREFOX_VERSION=45.0
-# RUN FIREFOX_DOWNLOAD_URL=$(if [ $FIREFOX_VERSION = "nightly" ] || [ $FIREFOX_VERSION = "devedition" ]; then echo "https://download.mozilla.org/?product=firefox-$FIREFOX_VERSION-latest-ssl&os=linux64&lang=en-US"; else echo "https://download-installer.cdn.mozilla.net/pub/firefox/releases/$FIREFOX_VERSION/linux-i686/en-US/firefox-$FIREFOX_VERSION.tar.bz2"; fi) \
-#   && apt-get update -qqy \
-#   && apt-get -qqy --no-install-recommends install firefox \
-#   && rm -rf /var/lib/apt/lists/* /var/cache/apt/* \
-#   && wget --no-verbose -O /tmp/firefox.tar.bz2 $FIREFOX_DOWNLOAD_URL \
-#   && apt-get -y purge firefox \
-#   && rm -rf /opt/firefox \
-#   && tar -C /opt -xjf /tmp/firefox.tar.bz2 \
-#   && rm /tmp/firefox.tar.bz2 \
-#   && mv /opt/firefox /opt/firefox-$FIREFOX_VERSION \
-#   && ln -fs /opt/firefox-$FIREFOX_VERSION/firefox /usr/bin/firefox \
-#   && chmod 777 /usr/bin/firefox
-
-ARG GECKODRIVER_VERSION=latest
 RUN wget --no-verbose -O /tmp/geckodriver.tar.gz https://github.com/mozilla/geckodriver/releases/download/v0.19.1/geckodriver-v0.19.1-linux64.tar.gz \
   && rm -rf /opt/geckodriver \
   && tar -C /opt -zxf /tmp/geckodriver.tar.gz \
