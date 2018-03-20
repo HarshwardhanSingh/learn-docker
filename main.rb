@@ -2,8 +2,6 @@ require 'sinatra'
 require 'selenium-webdriver'
 require 'headless'
 
-
-
 get '/' do
   url = params[:url]
   width = 1024
